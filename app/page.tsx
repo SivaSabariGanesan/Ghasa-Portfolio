@@ -5,6 +5,7 @@ import gsap from "gsap";
 import Image from "next/image";
 import AboutSection from "./components/AboutSection";
 import MembersSection from "./components/MembersSection";
+import Footer from "./components/Footer";
 import kanpur from "../public/images/kanpur.png"
 import hh from "../public/images/hh.png"
 import pondy from "../public/images/pondy.png"
@@ -194,7 +195,7 @@ export default function Home() {
         {/* ===== Hero ===== */}
         <div id="hero">
           <div id="nav">
-            
+
             <div id="navright">
               <a href="https://www.linkedin.com/in/mkakash1912/" target="_blank" rel="noopener noreferrer">
                 linkedin
@@ -349,25 +350,7 @@ export default function Home() {
         </div>
 
         {/* ===== Footer ===== */}
-        <div id="footer">
-          <div id="footerleft">
-            <h4>&copy; team ghasa 2025</h4>
-          </div>
-          <div id="footerright">
-            <a href="#" target="_blank" rel="noopener noreferrer">
-              Facebook
-            </a>
-            <a href="#" target="_blank" rel="noopener noreferrer">
-              Github
-            </a>
-            <a href="#" target="_blank" rel="noopener noreferrer">
-              Instagram
-            </a>
-            <a href="#" target="_blank" rel="noopener noreferrer">
-              Twitter
-            </a>
-          </div>
-        </div>
+        <Footer />
       </div>
     </>
   );
