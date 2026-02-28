@@ -20,7 +20,7 @@ const projects: Project[] = [
         title: "Blockchain Based Voting System",
         category: "DAPP",
         year: "2024",
-        image: "https://tse4.mm.bing.net/th/id/OIP.b4jNIa0WiOgocryD0ZuK8QHaEK?pid=Api&P=0&h=180",
+        image: "https://miro.medium.com/v2/resize:fit:1200/1*EDb4Q9rftFN5NEd8cseYpg.png",
         link: "#",
     },
     {
@@ -28,7 +28,7 @@ const projects: Project[] = [
         title: "Decentralized Certificate Verification System",
         category: "DAPP",
         year: "2024",
-        image: "https://tse2.mm.bing.net/th/id/OIP.Sy5OgttRgutK-mO-ifON8gHaEb?pid=Api&P=0&h=180",
+        image: "https://s3.envato.com/files/446568913/preview/1.jpg",
         link: "#",
     },
     {
