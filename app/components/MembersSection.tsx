@@ -78,7 +78,7 @@ const MembersSection = () => {
                     <div className="members-hero-content">
                         <h5 className="members-subheading">CREATIVE MINDS</h5>
                         <h1 ref={titleRef} className="members-main-heading">
-                            The Contributors <br /> of <br /> Ghasa
+                            Contributors <br ></br>
                         </h1>
                         <p className="members-hero-description">
                             Our team of experts is dedicated to delivering
