@@ -254,8 +254,144 @@ body {
   color: black;
 }
 
-/* ===== Projects Section ===== */
-#second {
+/* ===== NEW Projects Section (Peak Animation) ===== */
+#projects-section {
+  width: 100%;
+  padding: 150px 5vw;
+  background-color: #050505;
+  color: white;
+  font-family: "Mono";
+}
+
+.projects-title {
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-family: "Monospace-neon", sans-serif;
+  text-transform: uppercase;
+  font-weight: 800;
+  margin-bottom: 80px;
+  letter-spacing: 2px;
+  opacity: 0.9;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+  width: 100%;
+}
+
+.project-peak-item {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  aspect-ratio: 16/9;
+}
+
+/* Stagger the second column slightly */
+.project-peak-item:nth-child(even) {
+  margin-top: 100px;
+}
+
+.project-peak-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: white;
+  position: relative;
+}
+
+.project-peak-img-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.project-peak-img {
+  will-change: transform, opacity;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.project-peak-item:hover .project-peak-img {
+  transform: scale(1.05) !important;
+  /* Overrides GSAP scale locally on hover for extra effect */
+}
+
+.project-peak-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 50%);
+  opacity: 0.6;
+  transition: opacity 0.4s ease;
+}
+
+.project-peak-item:hover .project-peak-overlay {
+  opacity: 0.8;
+}
+
+.project-peak-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 40px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  will-change: transform, opacity;
+}
+
+.project-peak-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  opacity: 0.7;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.project-peak-content h3 {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-family: "Monospace-neon", sans-serif;
+  margin: 0;
+  transform: translateY(10px);
+  transition: transform 0.4s ease;
+}
+
+.project-peak-item:hover .project-peak-content h3 {
+  transform: translateY(0);
+}
+
+@media screen and (max-width: 768px) {
+  #projects-section {
+    padding: 80px 20px;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .project-peak-item:nth-child(even) {
+    margin-top: 0;
+  }
+
+  .project-peak-content {
+    padding: 20px;
+  }
+}
+
+/* ===== Projects Section (Replacing with HackathonSection) ===== */
+#hackathon-section {
   color: white;
   background-color: black;
   padding-right: 14vw;
@@ -265,14 +401,33 @@ body {
 }
 
 @media screen and (max-width: 768px) {
-  #second {
+  #hackathon-section {
     padding-right: 20px;
     padding-left: 20px;
     padding-top: 80px;
   }
 }
 
-.elem {
+.hackathon-header {
+  margin-left: 50px;
+  margin-bottom: 30px;
+}
+
+.hackathon-header h2 {
+  font-size: 24px;
+  opacity: 0.8;
+  text-transform: uppercase;
+  font-family: "Monospace-neon", sans-serif;
+  letter-spacing: 2px;
+}
+
+@media screen and (max-width: 1024px) {
+  .hackathon-header {
+    margin-left: 0;
+  }
+}
+
+.hackathon-elem {
   position: relative;
   display: flex;
   justify-content: space-between;
@@ -283,7 +438,7 @@ body {
   border-top: 0.35px solid rgb(93, 93, 93);
 }
 
-.elem h1 {
+.hackathon-elem h1 {
   text-transform: uppercase;
   font-size: 6vw;
   font-weight: 500;
@@ -291,18 +446,18 @@ body {
 }
 
 @media screen and (max-width: 768px) {
-  .elem h1 {
+  .hackathon-elem h1 {
     font-size: 8vw;
   }
 }
 
 @media screen and (max-width: 480px) {
-  .elem h1 {
+  .hackathon-elem h1 {
     font-size: 10vw;
   }
 }
 
-.elem a {
+.hackathon-elem a {
   text-decoration: none;
   color: white;
   display: flex;
@@ -310,11 +465,11 @@ body {
   width: 100%;
 }
 
-.elemlast {
+.hackathon-elemlast {
   border-bottom: 0.35px solid rgb(93, 93, 93);
 }
 
-.elem img {
+.hackathon-elem img {
   opacity: 0;
   pointer-events: none;
   z-index: 999;
@@ -325,20 +480,20 @@ body {
 }
 
 @media screen and (max-width: 1024px) {
-  #second {
+  #hackathon-section {
     padding: 80px 5vw;
     padding-right: 5vw;
     /* Override the desktop 14vw */
   }
 
-  .elem {
+  .hackathon-elem {
     flex-direction: column;
     align-items: flex-start;
     margin-left: 0;
     padding: 30px 0;
   }
 
-  .project-img-container {
+  .hackathon-img-container {
     width: 100%;
     height: 220px;
     overflow: hidden;
@@ -347,7 +502,7 @@ body {
     background: #111;
   }
 
-  .elem img {
+  .hackathon-elem img {
     position: relative;
     transform: none;
     opacity: 1;
@@ -358,7 +513,7 @@ body {
     pointer-events: auto;
   }
 
-  .elem h1 {
+  .hackathon-elem h1 {
     font-size: 1.8rem;
     order: 2;
     opacity: 1;

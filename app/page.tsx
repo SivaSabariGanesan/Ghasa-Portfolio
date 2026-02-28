@@ -2,15 +2,11 @@
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
-import Image from "next/image";
 import AboutSection from "./components/AboutSection";
+import ProjectsSection from "./components/ProjectsSection";
 import MembersSection from "./components/MembersSection";
 import Footer from "./components/Footer";
-import kanpur from "../public/images/kanpur.png"
-import hh from "../public/images/hh.png"
-import pondy from "../public/images/pondy.png"
-import mujx from "../public/images/muj.png"
-import ques from "../public/images/ques.jpg"
+import HackathonSection from "./components/HackathonSection";
 export default function Home() {
   const mainRef = useRef<HTMLDivElement>(null);
   const minicircleRef = useRef<HTMLDivElement>(null);
@@ -120,68 +116,9 @@ export default function Home() {
       return undefined;
     });
 
-    // --- Project image hover (Desktop only) ---
-    const mmProjects = gsap.matchMedia();
-    mmProjects.add({
-      isDesktop: "(min-width: 1025px)",
-      isMobile: "(max-width: 1024px)",
-    }, (context) => {
-      const { isDesktop } = context.conditions as { isDesktop: boolean };
-      const elems = document.querySelectorAll<HTMLElement>(".elem");
-
-      if (isDesktop) {
-        const handlers: Array<{
-          el: HTMLElement;
-          leave: (e: MouseEvent) => void;
-          move: (e: MouseEvent) => void;
-        }> = [];
-
-        elems.forEach((elem) => {
-          let rotate = 0;
-          let diffrot = 0;
-
-          const onLeave = () => {
-            gsap.to(elem.querySelector("img"), {
-              opacity: 0,
-              ease: "power3",
-              duration: 0.5,
-            });
-          };
-
-          const onMove = (e: MouseEvent) => {
-            const diff = e.clientY - elem.getBoundingClientRect().top;
-            diffrot = e.clientX - rotate;
-            rotate = e.clientX;
-            gsap.to(elem.querySelector("img"), {
-              opacity: 1,
-              ease: "power3",
-              top: diff,
-              left: e.clientX,
-              rotate: gsap.utils.clamp(-20, 20, diffrot * 0.5),
-            });
-          };
-
-          elem.addEventListener("mouseleave", onLeave);
-          elem.addEventListener("mousemove", onMove);
-          handlers.push({ el: elem, leave: onLeave, move: onMove });
-        });
-
-        return () => {
-          handlers.forEach(({ el, leave, move }) => {
-            el.removeEventListener("mouseleave", leave);
-            el.removeEventListener("mousemove", move);
-          });
-        };
-      } else {
-        // Let CSS handle mobile layout
-      }
-      return undefined;
-    });
-
     // Cleanup for locomotive scroll (moved outside matchMedia if it's for all)
     return () => {
       mm.revert();
-      mmProjects.revert();
       if (scrollInstance) {
         (scrollInstance as any).destroy();
       }
@@ -223,12 +160,12 @@ export default function Home() {
           </div>
 
           <div id="herofooter">
-            <a href="#second">
+            <a href="#hackathon-section">
               Projects <i className="ri-arrow-right-down-line" />
             </a>
             <div id="iconset">
               <div className="circle">
-                <a href="#second">
+                <a href="#hackathon-section">
                   <i className="ri-arrow-down-line" />
                 </a>
               </div>
@@ -241,100 +178,11 @@ export default function Home() {
           </div>
         </div>
 
-        {/* ===== Projects ===== */}
-        <div id="second">
-          <div className="elem">
-            <a
-              href="https://haseebjaved4212.github.io/Audira-Headphone-Brand-Website-/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <div className="project-img-container">
-                <Image
-                  src={kanpur}
-                  alt="Audira"
-                  width={400}
-                  height={300}
-                  unoptimized
-                />
-              </div>
-              <h1>IIT KANPUR HACKATHON</h1>
-            </a>
-          </div>
-          <div className="elem">
-            <a
-              href="https://haseebjaved4212.github.io/E-Commerce-Store/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <div className="project-img-container">
-                <Image
-                  src={hh}
-                  alt="E-Commerce"
-                  width={400}
-                  height={300}
-                  unoptimized
-                />
-              </div>
-              <h1>Hack Hustle Saveetha 2024
-              </h1>
-            </a>
-          </div>
-          <div className="elem">
-            <a
-              href="https://haseebjaved4212.github.io/Real-Estate-Agency-Website/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <div className="project-img-container">
-                <Image
-                  src={pondy}
-                  alt="Real Estate"
-                  width={400}
-                  height={300}
-                  unoptimized
-                />
-              </div>
-              <h1>0x Day SMVCE Pondicherry</h1>
-            </a>
-          </div>
-          <div className="elem elemlast">
-            <a
-              href="https://haseebjaved4212.github.io/Ramadan-Special-Website/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <div className="project-img-container">
-                <Image
-                  src={mujx}
-                  alt="Ramadan"
-                  width={400}
-                  height={300}
-                  unoptimized
-                />
-              </div>
-              <h1>MUJX 2.0 Jaipur</h1>
-            </a>
-          </div>
-          <div className="elem">
-            <a
-              href="https://haseebjaved4212.github.io/Modern-Portfolio-Template/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <div className="project-img-container">
-                <Image
-                  src={ques}
-                  alt="Portfolio"
-                  width={400}
-                  height={300}
-                  unoptimized
-                />
-              </div>
-              <h1>Hacksamarth 2026</h1>
-            </a>
-          </div>
-        </div>
+        {/* ===== Projects Section ===== */}
+        <ProjectsSection />
+
+        {/* ===== Hackathons Section ===== */}
+        <HackathonSection />
 
         {/* ===== About Us ===== */}
         <AboutSection />
